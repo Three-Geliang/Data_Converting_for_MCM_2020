@@ -9,6 +9,7 @@ ws = wb.active
 
 
 current_row = 1
+col_comments_heading = 13
 col_comments = 14
 col_polarity = 16
 col_subjectivity = 17
@@ -27,7 +28,7 @@ while True:
     print('Row ', str(current_row), 'Done')
     if ws.cell(row=current_row, column=1).value:
         if ws.cell(row=current_row, column=col_comments).value:
-            blob = TextBlob(ws.cell(row=current_row, column=col_comments).value)
+            blob = TextBlob(ws.cell(row=current_row, column=col_comments).value + ws.cell(row=current_row, column=col_comments_heading).value.replace('/', ' ').replace('.', ' '))
             total_polarity = 0
             total_subjectivity = 0
             for sen in blob.sentences:
